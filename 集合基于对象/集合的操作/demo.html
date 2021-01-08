@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>集合</title>
+</head>
+<body>
+  <script>
+    //封装集合类
+    function Set(){
+      //属性
+      this.items = {}
+      //方法
+      //添加
+      Set.prototype.add = function (value) {
+        //判断是否存在该元素
+        if( this.has(value)){
+          return false
+        }
+        this.items[value] = value
+        return true
+      }
+
+      //判断是否存在元素
+      Set.prototype.has = function (value) {
+        return this.items.hasOwnProperty(value)
+      }
+
+      //删除单个
+      Set.prototype.remove = function (value) {
+        if( !this.has(value)){
+          return false
+        }
+        delete this.items[value]
+        return true
+      }
+
+      //删除全部
+      Set.prototype.clear = function (){
+        this.items = {}
+        return true
+      }
+
+      //返回集合中元素的数量
+      Set.prototype.size = function(){
+        return Object.keys(this.items).length
+      }
+
+      //返回一个包含所有值的数组
+      Set.prototype.values = function(){
+        return Object.keys(this.items)
+      }
+    }
+    var set = new Set()
+    //添加
+    alert(set.add("aaa"))
+    alert(set.add("aaa"))
+    alert(set.add("cba"))
+    alert(set.add("nab"))
+    alert(set.add("bbb"))
+    alert(set.values())
+    //返回的数量
+    alert(set.size())
+    //删除
+    alert(set.remove("aaa"))
+    alert(set.remove("xxx"))
+    alert(set.values())
+    alert(set.size())
+    //清除
+    alert(set.clear())
+    alert(set.values())
+    alert(set.size())
+
+  </script>
+</body>
+</html>
